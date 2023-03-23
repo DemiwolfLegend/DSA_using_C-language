@@ -25,8 +25,12 @@ void add(struct node **, int);
 
 void reverse(struct node **);
 
+void push(struct node **, int);
+
+void pop(struct node **);
+
 // void main function
-void main()
+int main()
 {
     struct node *p;
     p = NULL;
@@ -46,7 +50,11 @@ void main()
     reverse(&p);
     printf("\nNo. of elements in the linked list = %d", count(p));
     display(p);
+
+    return 0;
 }
+
+// Functions declaration
 
 int count(struct node *q)
 {
@@ -209,4 +217,23 @@ void reverse(struct node **q)
         r->link = s;
     }
     *q = r;
+}
+
+void push(struct node **q, int num)
+{
+    struct node *temp;
+
+    temp = malloc(sizeof(struct node));
+    temp->value = num;
+    temp->link = *q;
+    *q = temp;
+}
+
+void pop(struct node **q)
+{
+    struct node *temp;
+
+    temp = *q;
+    *q = temp->link;
+    free(temp);
 }
