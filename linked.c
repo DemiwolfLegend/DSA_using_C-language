@@ -19,6 +19,8 @@ void addatbeg(struct node **, int);
 
 void addafter(struct node *, int, int);
 
+void delete(struct node **, int);
+
 // void main function
 void main()
 {
@@ -30,11 +32,19 @@ void main()
     append(&p, 2);
     append(&p, 3);
     append(&p, 4);
-    append(&p, 17);
-    append(&p, 18);
-    append(&p, 19);
     printf("\nNo. of elements in the linked list = %d", count(p));
+    display(p);
 
+    addatbeg(&p, 15);
+    addatbeg(&p, 29);
+    addatbeg(&p, 12);
+    printf("\nNo. of elements in the linked list = %d", count(p));
+    display(p);
+
+    addafter(p, 3, 22);
+    addafter(p, 5, 25);
+    addafter(p, 8, 11);
+    printf("\nNo. of elements in the linked list = %d", count(p));
     display(p);
 }
 
@@ -119,4 +129,36 @@ void addafter(struct node *q, int loc, int num)
     r->value = num;
     r->link = temp->link;
     temp->link = r;
+}
+
+void delete(struct node **q, int num)
+{
+    struct node *temp, *r;
+
+    temp = *q;
+
+    while (temp != NULL)
+    {
+        if (temp->value == num)
+        {
+            if (temp == q)
+            {
+                *q = temp->link;
+                free(temp);
+                return;
+            }
+            else
+            {
+                r->link = temp->link;
+                free(temp);
+                return;
+            }
+        }
+        else
+        {
+            r = temp;
+            temp = temp->link;
+        }
+    }
+    printf("\nElement not found");
 }
