@@ -17,6 +17,8 @@ void append(struct node **, int);
 
 void addatbeg(struct node **, int);
 
+void addafter(struct node *, int, int);
+
 // void main function
 void main()
 {
@@ -94,4 +96,27 @@ void addatbeg(struct node **q, int num)
     temp->value = num;
     temp->link = *q;
     *q = temp;
+}
+
+void addafter(struct node *q, int loc, int num)
+{
+    struct node *temp, *r;
+    int i;
+
+    temp = q;
+
+    for (i = 0; i < loc; i++)
+    {
+        temp = temp->link;
+
+        if (temp == NULL)
+        {
+            printf("\nThere are less than %d elements in linked list", loc);
+            return;
+        }
+    }
+    r = malloc(sizeof(struct node));
+    r->value = num;
+    r->link = temp->link;
+    temp->link = r;
 }
