@@ -21,6 +21,8 @@ void addafter(struct node *, int, int);
 
 void delete(struct node **, int);
 
+void add(struct node **, int);
+
 // void main function
 void main()
 {
@@ -30,20 +32,12 @@ void main()
     printf("\nNo. of elements in the linked list = %d", count(p));
     append(&p, 1);
     append(&p, 2);
-    append(&p, 3);
     append(&p, 4);
+    append(&p, 5);
     printf("\nNo. of elements in the linked list = %d", count(p));
     display(p);
 
-    addatbeg(&p, 15);
-    addatbeg(&p, 29);
-    addatbeg(&p, 12);
-    printf("\nNo. of elements in the linked list = %d", count(p));
-    display(p);
-
-    addafter(p, 3, 22);
-    addafter(p, 5, 25);
-    addafter(p, 8, 11);
+    add(&p, 3);
     printf("\nNo. of elements in the linked list = %d", count(p));
     display(p);
 }
@@ -141,7 +135,7 @@ void delete(struct node **q, int num)
     {
         if (temp->value == num)
         {
-            if (temp == q)
+            if (temp == *q)
             {
                 *q = temp->link;
                 free(temp);
@@ -161,4 +155,36 @@ void delete(struct node **q, int num)
         }
     }
     printf("\nElement not found");
+}
+
+void add(struct node **q, int num)
+{
+    struct node *temp, *r;
+    temp = *q;
+
+    r = malloc(sizeof(struct node));
+    r->value = num;
+
+    if (*q == NULL || (*q)->value > num)
+    {
+        *q = r;
+        (*q)->link = temp;
+    }
+    else
+    {
+        while (temp != NULL)
+        {
+            if (temp->value <= num && (temp->link->value > num || temp->link == NULL))
+            {
+                r->link = temp->link;
+                temp->link = r;
+                return;
+            }
+
+            temp = temp->link;
+        }
+    }
+
+    r->link = temp->link;
+    temp->link = r;
 }
