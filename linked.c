@@ -23,6 +23,8 @@ void delete(struct node **, int);
 
 void add(struct node **, int);
 
+void reverse(struct node **);
+
 // void main function
 void main()
 {
@@ -38,6 +40,10 @@ void main()
     display(p);
 
     add(&p, 3);
+    printf("\nNo. of elements in the linked list = %d", count(p));
+    display(p);
+
+    reverse(&p);
     printf("\nNo. of elements in the linked list = %d", count(p));
     display(p);
 }
@@ -187,4 +193,20 @@ void add(struct node **q, int num)
 
     r->link = temp->link;
     temp->link = r;
+}
+
+void reverse(struct node **q)
+{
+    struct node *temp, *s, *r;
+
+    temp = *q;
+    r = NULL;
+    while (temp != NULL)
+    {
+        s = r;
+        r = temp;
+        temp = temp->link;
+        r->link = s;
+    }
+    *q = r;
 }
