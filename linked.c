@@ -56,6 +56,7 @@ int main()
 
 // Functions declaration
 
+// count the elements in linked list
 int count(struct node *q)
 {
     int c = 0;
@@ -68,6 +69,7 @@ int count(struct node *q)
     return c;
 }
 
+// display the linked list elements
 void display(struct node *q)
 {
     printf("\n");
@@ -78,6 +80,7 @@ void display(struct node *q)
     }
 }
 
+// add an element at the end of the linked list
 void append(struct node **q, int num)
 {
     struct node *temp, *r;
@@ -106,6 +109,7 @@ void append(struct node **q, int num)
     }
 }
 
+// add an element in the begining of linked list
 void addatbeg(struct node **q, int num)
 {
     struct node *temp;
@@ -116,6 +120,7 @@ void addatbeg(struct node **q, int num)
     *q = temp;
 }
 
+// add an element at 'n'th position or (n+1) index
 void addafter(struct node *q, int loc, int num)
 {
     struct node *temp, *r;
@@ -139,6 +144,7 @@ void addafter(struct node *q, int loc, int num)
     temp->link = r;
 }
 
+// delete element with value = num
 void delete(struct node **q, int num)
 {
     struct node *temp, *r;
@@ -171,6 +177,7 @@ void delete(struct node **q, int num)
     printf("\nElement not found");
 }
 
+// add an element in between in ascending order
 void add(struct node **q, int num)
 {
     struct node *temp, *r;
@@ -203,6 +210,7 @@ void add(struct node **q, int num)
     temp->link = r;
 }
 
+// reversing the linked list in spot
 void reverse(struct node **q)
 {
     struct node *temp, *s, *r;
@@ -219,6 +227,7 @@ void reverse(struct node **q)
     *q = r;
 }
 
+// adding and element in stack
 void push(struct node **q, int num)
 {
     struct node *temp;
@@ -229,6 +238,7 @@ void push(struct node **q, int num)
     *q = temp;
 }
 
+// removing an element from stack
 void pop(struct node **q)
 {
     struct node *temp;
