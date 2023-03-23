@@ -15,6 +15,8 @@ void display(struct node *);
 
 void append(struct node **, int);
 
+void addatbeg(struct node **, int);
+
 // void main function
 void main()
 {
@@ -82,4 +84,14 @@ void append(struct node **q, int num)
         r->link = NULL;
         temp->link = r;
     }
+}
+
+void addatbeg(struct node **q, int num)
+{
+    struct node *temp;
+
+    temp = malloc(sizeof(struct node));
+    temp->value = num;
+    temp->link = *q;
+    *q = temp;
 }
